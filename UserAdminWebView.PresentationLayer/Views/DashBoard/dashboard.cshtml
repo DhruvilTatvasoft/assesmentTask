@@ -7,7 +7,8 @@
 <div class="d-flex">
 
 
-    <div class="@(User.IsInRole("Admin") ? "p-5 w-50" : "")">
+    <div class="@(User.IsInRole("Admin") ? "p-5 w-50" : "p-5")">
+        <div id="logoutmodalconatainer"></div>
         <div class="w-100 d-flex align-items-center justify-content-center ">
             <div class="@(User.IsInRole("Admin") ? "row w-100 details-container" : "row w-50 details-container")">
                 <div class="d-flex ">
@@ -75,103 +76,90 @@
         </div>
 
     </div>
-    <div class="w-50 mt-5 me-4">
-        <div class="row">
-            <div class="col-6">
-                <div class=" pb-3 h-100">
-                    <div class="container-fluid bg-white pb-3 pt-2 dashboardCardsFirstRow slightBoxShadowStyle h-100">
-                        <div class="row" style="height: 40%;">
-                            <div class="container-fluid d-flex justify-content-end">
-                                <div class="totalSalesIconDiv p-1" style="background-color:  #a2f3a2;">
-                                    <img src="/images/team.png" style="width:45px;" class="p-2">
+    @if (User.IsInRole("Admin"))
+    {
+
+        <div class="w-50 mt-5 me-4">
+            <div class="row">
+                <div class="col-6">
+                    <div class=" pb-3 h-100">
+                        <div class="container-fluid bg-white pb-3 pt-2 dashboardCardsFirstRow slightBoxShadowStyle h-100">
+                            <div class="row" style="height: 40%;">
+                                <div class="container-fluid d-flex justify-content-end">
+                                    <div class="totalSalesIconDiv p-1" style="background-color:  #a2f3a2;">
+                                        <img src="/images/team.png" style="width:45px;" class="p-2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="container-fluid">
+                                    <h4 class="mb-1" id="totalSalesText">@Model.allUsers.Count</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="container-fluid">
+                                    <span>Total Users</span>
+                                    @* <button data-bs-toggle="modal" data-bs-target="#exampleModal">open modal</button> *@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="container-fluid">
-                                <h4 class="mb-1" id="totalSalesText">@Model.allUsers.Count</h4>
+                    </div>
+
+                </div>
+                <div class="col-6">
+                    <div class=" pb-3 h-100">
+                        <div class="container-fluid bg-white pb-3 pt-2 dashboardCardsFirstRow slightBoxShadowStyle h-100">
+                            <div class="row" style="height: 40%;">
+                                <div class="container-fluid d-flex justify-content-end">
+                                    <div class="totalSalesIconDiv p-1" style="background-color:  #a2f3a2;">
+                                        <img src="/images/team.png" style="width:45px;" class="p-2">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="container-fluid">
-                                <span>Total Users</span>
+                            <div class="row">
+                                <div class="container-fluid">
+                                    <h4 class="mb-1" id="totalSalesText">1234</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="container-fluid">
+                                    <span>Total Sales</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
-            <div class="col-6">
-                <div class=" pb-3 h-100">
-                    <div class="container-fluid bg-white pb-3 pt-2 dashboardCardsFirstRow slightBoxShadowStyle h-100">
-                        <div class="row" style="height: 40%;">
-                            <div class="container-fluid d-flex justify-content-end">
-                                <div class="totalSalesIconDiv p-1" style="background-color:  #a2f3a2;">
-                                    <img src="/images/team.png" style="width:45px;" class="p-2">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="container-fluid">
-                                <h4 class="mb-1" id="totalSalesText">1234</h4>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="container-fluid">
-                                <span>Total Sales</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col"></th>
+                            <th scope="col">Position</th>
+                            <th scope="col">Salary</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.allUsers)
+                        {
+                            <tr>
+                                <th scope="row">@index</th>
+                                <div class="d-none">@(index = index + 1) </div>
+                                <td>@user.firstname @user.lastname</td>
+                                <td>@user.phonenumber</td>
+                                <td>@user.email</td>
+                                <td>@user.position</td>
+                                <td>@user.currentSalary.ToString("C")</td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
-
-        <div>
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col"></th>
-                        <th scope="col">Position</th>
-                        <th scope="col">Salary</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach(var user in Model.allUsers){
-                    <tr>
-                        <th scope="row">@index</th>
-                       <div class="d-none">@(index =index+1) </div> 
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-
-                    </tr>
-                    }
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>Thornton</td>
-                        <td>Thornton</td>
-                        <td>Thornton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>the Bird</td>
-                        <td>the Bird</td>
-                        <td>the Bird</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
+    }
 </div>

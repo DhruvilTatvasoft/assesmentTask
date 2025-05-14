@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 public class LoginController : Controller
@@ -28,10 +29,14 @@ public class LoginController : Controller
                 var role = principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
                 if (role == "Admin")
                 {
+                      TempData["ToastrMessage"] = "Login successfully";
+                      TempData["ToastrType"] = "success";
                     return RedirectToAction("showDashBoard","Dashboard",new{userRole = "Admin",email = model.email});
                 }
                 else
                 {
+                    TempData["ToastrMessage"] = "Login successfully";
+                      TempData["ToastrType"] = "success";
                     return RedirectToAction("showDashBoard","Dashboard",new{userRole = "User",email = model.email});
                 }
             }
@@ -41,7 +46,16 @@ public class LoginController : Controller
 
         }
         else{
-            return Json(new {error = "error"});
+         TempData["ToastrMessage"] = "Invalid credentials";
+        TempData["ToastrType"] = "error";
+            return View("index");
         }
+    }
+
+    public IActionResult Logout(){
+         HttpContext.Response.Cookies.Delete("token");
+         TempData["ToastrMessage"] = "Logout successfully";
+        TempData["ToastrType"] = "success";
+         return RedirectToAction("index");
     }
 }

@@ -1,0 +1,16 @@
+<div class="modal fade" id="LogoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body d-flex flex-column align-items-center justify-content-center">
+                            <img src="~/images/icons8-alert-48.png" style="width:70px" class="mb-1">
+                            <h5 class="mb-2">Are you sure you want to Logout?</h5>
+                            <div class="d-flex">
+                                <form method="post" asp-controller="Dashboard" asp-action="Logout">
+                                    <button type="submit" class="btn btn-primary me-2">Yes</button>
+                                </form>
+                                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
