@@ -1,0 +1,26 @@
+.details-container{
+    background-color: white;
+}
+.fields{
+    background-color: rgb(216, 216, 216);
+    margin:10px;
+    border-radius: 5px;
+}
+.dashboardCardsFirstRow{
+    border-radius: 8px;
+  }
+  .slightBoxShadowStyle {
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+  .totalSalesIconDiv {
+    background-color: #a2f3a2;
+    border-radius: 50%; 
+    padding: 10px;
+    border: 4px solid white; 
+    box-shadow: 0 0 0 1px #a2f3a2, 0 0 0 0px #32cd32;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  

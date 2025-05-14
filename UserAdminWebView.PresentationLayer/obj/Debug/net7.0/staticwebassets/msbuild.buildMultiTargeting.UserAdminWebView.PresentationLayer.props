@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\UserAdminWebView.PresentationLayer.props" />
+</Project>

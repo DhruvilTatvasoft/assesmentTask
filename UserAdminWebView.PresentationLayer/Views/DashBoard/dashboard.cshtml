@@ -1,0 +1,177 @@
+@{
+    Layout = "~/Views/Shared/_navbar.cshtml";
+    int index = 1;
+}
+@model ProfileDetailsViewModel
+<link rel="stylesheet" href="~/css/dashboard.css">
+<div class="d-flex">
+
+
+    <div class="@(User.IsInRole("Admin") ? "p-5 w-50" : "")">
+        <div class="w-100 d-flex align-items-center justify-content-center ">
+            <div class="@(User.IsInRole("Admin") ? "row w-100 details-container" : "row w-50 details-container")">
+                <div class="d-flex ">
+                    <div class="p-0" style="width: 66%;">
+                        <div class="d-flex  ms-0 p-3 w-100 fields">
+                            <label for="" class="me-1">First name : </label>
+                            <label for=""> @Model.userDetail.firstname</label>
+                        </div>
+                        <div class="d-flex  ms-0 p-3 w-100 fields">
+                            <label for="" class="me-1">Last name : </label>
+                            <label for=""> @Model.userDetail.lastname</label>
+                        </div>
+                    </div>
+                    <div style="width: 33%;margin-left: 10%;background-color: rgb(80, 146, 238);border-radius: 100%;"
+                        class="d-flex align-items-center justify-content-center">
+                        <img src="@(User.IsInRole("Admin") ? "/images/admin.png" : "/images/user.png")" class="w-75"
+                            style="margin-top:7%;" alt="">
+                    </div>
+                </div>
+                <div class="d-flex p-3  fields" style="width:97%;">
+                    <label for="" class="me-1">Email : </label>
+                    <label for=""> @Model.userDetail.email</label>
+                </div>
+                <div class="d-flex m-0 p-0">
+                    <div class="d-flex p-3 fields" style="width:97%;">
+                        <label for="" class="me-1">User name : </label>
+                        <label for=""> @Model.userDetail.username</label>
+                    </div>
+                    <div class="d-flex p-3 fields" style="width:97%;">
+                        <label for="" class="me-1">Address : </label>
+                        <label for=""> @Model.userDetail.address</label>
+                    </div>
+                </div>
+                <div class="d-flex m-0 p-0">
+                    <div class="d-flex p-3 fields" style="width:97%;">
+                        <label for="" class="me-1">Birth date : </label>
+                        <label for=""> @Model.userDetail.birthDate</label>
+                    </div>
+                    <div class="d-flex p-3 fields" style="width:97%;">
+                        <label for="" class="me-1">Age : </label>
+                        <label for=""> @Model.userDetail.age</label>
+                    </div>
+                </div>
+                <div class="d-flex p-3 fields" style="width:97%;">
+                    <label for="" class="me-1">Phone no : </label>
+                    <label for=""> @Model.userDetail.phonenumber</label>
+                </div>
+                <div class="d-flex p-3 fields" style="width:97%;">
+                    <label for="" class="me-1">Position : </label>
+                    <label for=""> @Model.userDetail.position</label>
+                </div>
+                <div class="d-flex flex-column p-3 fields" style="width:97%;">
+                    <label for="" class="me-1">Introduction : </label>
+                    <label for=""> @Model.userDetail.introduction</label>
+                </div>
+                <div class="d-flex p-3 fields" style="width:97%;">
+                    <label for="" class="me-1">Joined From : </label>
+                    <label for=""> @Model.userDetail.joinedAt</label>
+                </div>
+                <div class="d-flex p-3 fields" style="width:97%;">
+                    <label for="" class="me-1">Salary : </label>
+                    <label for=""> @Model.userDetail.currentSalary.ToString("C")</label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="w-50 mt-5 me-4">
+        <div class="row">
+            <div class="col-6">
+                <div class=" pb-3 h-100">
+                    <div class="container-fluid bg-white pb-3 pt-2 dashboardCardsFirstRow slightBoxShadowStyle h-100">
+                        <div class="row" style="height: 40%;">
+                            <div class="container-fluid d-flex justify-content-end">
+                                <div class="totalSalesIconDiv p-1" style="background-color:  #a2f3a2;">
+                                    <img src="/images/team.png" style="width:45px;" class="p-2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="container-fluid">
+                                <h4 class="mb-1" id="totalSalesText">@Model.allUsers.Count</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="container-fluid">
+                                <span>Total Users</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-6">
+                <div class=" pb-3 h-100">
+                    <div class="container-fluid bg-white pb-3 pt-2 dashboardCardsFirstRow slightBoxShadowStyle h-100">
+                        <div class="row" style="height: 40%;">
+                            <div class="container-fluid d-flex justify-content-end">
+                                <div class="totalSalesIconDiv p-1" style="background-color:  #a2f3a2;">
+                                    <img src="/images/team.png" style="width:45px;" class="p-2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="container-fluid">
+                                <h4 class="mb-1" id="totalSalesText">1234</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="container-fluid">
+                                <span>Total Sales</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col"></th>
+                        <th scope="col">Position</th>
+                        <th scope="col">Salary</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var user in Model.allUsers){
+                    <tr>
+                        <th scope="row">@index</th>
+                       <div class="d-none">@(index =index+1) </div> 
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+
+                    </tr>
+                    }
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>Thornton</td>
+                        <td>Thornton</td>
+                        <td>Thornton</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>the Bird</td>
+                        <td>the Bird</td>
+                        <td>the Bird</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
