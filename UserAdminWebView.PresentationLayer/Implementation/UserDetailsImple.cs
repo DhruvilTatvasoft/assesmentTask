@@ -12,6 +12,13 @@ public class UserDetailsImple : IUserDetailsService
         return allUsers;
     }
 
+    public decimal getHighestSalary()
+    {
+       List<ProfileDetails> list = _context.ProfileDetails.ToList();
+       decimal highestSalary = list.Max(p => p.currentSalary);
+       return highestSalary;
+    }
+
     public ProfileDetails getUserDetails(string email)
     {
         ProfileDetails userDetails = _context.ProfileDetails.FirstOrDefault(user=>user.email == email);

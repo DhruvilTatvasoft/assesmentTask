@@ -12,6 +12,8 @@ public class DashboardController : Controller
         if(userRole == "Admin"){
             model.userDetail = _userDetailsService.getUserDetails(email);
             model.allUsers = _userDetailsService.getAllUserDetails();
+            model.HighestSalary = _userDetailsService.getHighestSalary();
+
         }
         else{
             model.userDetail = _userDetailsService.getUserDetails(email);

@@ -22,7 +22,7 @@
                             <label for=""> @Model.userDetail.lastname</label>
                         </div>
                     </div>
-                    <div style="width: 33%;margin-left: 10%;background-color: rgb(80, 146, 238);border-radius: 100%;"
+                    <div style="width: 33%;margin-left: 10%;background-color: rgb(80, 146, 238); margin-top:1%;margin-right:2%;border-radius: 100%;"
                         class="d-flex align-items-center justify-content-center">
                         <img src="@(User.IsInRole("Admin") ? "/images/admin.png" : "/images/user.png")" class="w-75"
                             style="margin-top:7%;" alt="">
@@ -118,12 +118,12 @@
                             </div>
                             <div class="row">
                                 <div class="container-fluid">
-                                    <h4 class="mb-1" id="totalSalesText">1234</h4>
+                                    <h4 class="mb-1" id="totalSalesText">@Model.HighestSalary.ToString("C")</h4>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="container-fluid">
-                                    <span>Total Sales</span>
+                                    <span>Highest salary</span>
                                 </div>
                             </div>
                         </div>

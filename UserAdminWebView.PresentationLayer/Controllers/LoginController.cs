@@ -7,6 +7,7 @@ public class LoginController : Controller
     public readonly ILogin _loginService;
     public readonly IJwtTokenGenService _jwtTokenGenService;
     public readonly ICookieService _cookieService;
+    public readonly IUserDetailsService _userDetailsService;
     public LoginController(ILogin loginService,IJwtTokenGenService jwtTokenGenService,ICookieService cookieService){
         _loginService = loginService;
         _jwtTokenGenService = jwtTokenGenService;
@@ -57,5 +58,12 @@ public class LoginController : Controller
          TempData["ToastrMessage"] = "Logout successfully";
         TempData["ToastrType"] = "success";
          return RedirectToAction("index");
+    }
+
+    public IActionResult getUserDetails(string email){
+        ProfileDetailsViewModel modal = new ProfileDetailsViewModel();
+        var user = _userDetailsService.getUserDetails(email);
+        modal.userDetail = user;
+        return PartialView("_userDetailsModal",modal);
     }
 }
