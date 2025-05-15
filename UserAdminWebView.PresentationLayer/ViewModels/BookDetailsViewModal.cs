@@ -10,9 +10,11 @@ public class BookDetailsViewModal
     public string Authorname { get; set; }
 
     [Required(ErrorMessage = "ISBN no is required")]
-    [RegularExpression(@"^(?=(?:[^0-9]*[0-9]){10}(?:(?:[^0-9]*[0-9]){3})?$)[\\d-]+$", ErrorMessage = "Phone number must be exactly 10 digits.")]
+    [MaxLength(13, ErrorMessage = "ISBN must be a maximum of 13 characters.")]
+    [MinLength(10, ErrorMessage = "ISBN must be a minimum of 10 characters.")]
     public string ISBN { get; set; }
 
+    [Required(ErrorMessage = "Publish year is required")]
     public string publishedYear { get; set; }
 
     public bool bookstatus { get; set; }
