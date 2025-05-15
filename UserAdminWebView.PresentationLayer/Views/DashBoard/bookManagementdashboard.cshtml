@@ -1,0 +1,158 @@
+@model BookManagementViewModel
+@{
+    Layout = "~/Views/Shared/_navbar.cshtml";
+}
+
+<div class="d-flex justify-content-end mt-3 mb-3">
+    <div class="d-flex ">
+        <div>
+            <div class="form-group me-2">
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Enter email">
+                    @if(@User.IsInRole("Admin")){
+                <input type="hidden" value="true" id="isAdmin"/>
+                    }
+                    else{
+                <input type="hidden" value="false" id="isAdmin"/>
+
+                    }
+            </div>
+        </div>
+        <button class="btn btn-primary me-2" onclick="@(User.IsInRole("Admin") ? "AddNewBook()" : "Issuebook()")">@(User.IsInRole("Admin") ? "+ Add New Book" : "Issue book")</button>
+        @if(User.IsInRole("User")){
+        <button class="btn btn-primary me-2" onclick="openReturnBookModal()">Return Book</button>
+        <input type="hidden" id="emailid" asp-for="email">
+        }
+        @* <button class="btn btn-primary me-2" onclick="@(User.IsInRole("Admin") ? "AddNewBook()" : "ReturnBook()")">@(User.IsInRole("Admin") ? "Return Book" : "Return Book")</button> *@
+    </div>
+</div>
+<div class="p-3 bookdatacontainer"></div>
+<div class="p-3 addBookModelContainer"></div>
+<div class="p-3 returnBookModelContainer"></div>
+
+<script>
+    $("document").ready(getAllBooks());
+    function getAllBooks() {
+        $.ajax({
+            url:"@Url.Action("getAllBooks","Dashboard")",
+            type: "GET",
+            data:{rolename: $('#isAdmin').val()},
+            success: function (data) {
+                $(".bookdatacontainer").html(data);
+            }
+        });
+    }
+
+    function AddNewBook(){
+        $.ajax({
+            url: "@Url.Action("openAddNewBookModel","Dashboard")",
+            type:"GET",
+            success: function (data) {
+                $(".addBookModelContainer").html(data);
+                $("#addEditBookModal").modal('show')
+                
+            }
+        });
+    }
+     function editBookDetailsGet(id) {
+        $.ajax({
+            url:"@Url.Action("openAddNewBookModel","Dashboard")",
+            type:"GET",
+            data:{bookid : id},
+            success: function(data){
+                $(".addBookModelContainer").html(data);
+                 $("#addEditBookModal").modal('show')
+            }
+        });
+    }
+    $(document).on('submit',"#addEditBookForm",function(e){
+        e.preventDefault();
+        if(!$(this).valid){
+            return;
+        }
+        var form = new FormData(this);
+        $.ajax({
+            url:"@Url.Action("AddOrEditBook","Book")",
+            type:"POST",
+            data:form,
+            processData: false,
+            contentType: false,
+            success:function(data){
+                toastr.success(data.success);  
+                $("#addEditBookModal").modal('hide')
+                getAllBooks(); 
+            }
+        });
+    })
+    function openDeleteModal(id){
+        $.ajax({
+            url:"@Url.Action("openDeleteModal","Book")",
+            type:"GET",
+            data:{bookid : id},
+            success:function(data){
+                $(".addBookModelContainer").html(data);
+                $("#deleteModal").modal('show');
+            }
+        });
+    }
+    function deleteBook(id){
+        $.ajax({
+            url:"@Url.Action("DeleteBook","Book")",
+            type:"POST",
+            data:{bookid : id},
+            success:function(data){
+                toastr.success(data.success);
+                getAllBooks();
+                }
+        });
+    }
+    function Issuebook(){
+       var selectedBooks = []
+        $("input:checkbox[name=bookids]:checked").each(function(){
+            selectedBooks.push($(this).val());
+        });
+        if(selectedBooks.length > 3){
+            toastr.error("You can Assign maximum 3 books");
+            return;
+        }
+        if(selectedBooks.length < 1){
+            toastr.error("select at least one book");
+            return;
+        }
+        var bookModel = {
+            bookids : selectedBooks,
+            email :  @Html.Raw(Json.Serialize(Model.email))
+        } 
+       
+        $.ajax({
+            url:"@Url.Action("IssueBooks","Book")",
+            type:"POST",
+            data:JSON.stringify(bookModel),
+            contentType: "application/json",
+            dataType: "json",
+            success:function(data){
+                console.log(data);
+                if(data.error){
+                    toastr.error(data.error);
+                }
+                else{
+                    toastr.success(data.success);
+                }
+                getAllBooks();
+            }
+        })
+    }
+
+    function openReturnBookModal(){
+        var email = $("#emailid").val();
+        $.ajax({
+            url:"@Url.Action("getIssuedBooks","Book")",
+            type: "POST",
+            data :{email : email} ,
+            success: function (data) {
+                $(".returnBookModelContainer").html(data);
+                $("#returnBookModel").modal('show');
+            }
+        })
+    }
+</script>

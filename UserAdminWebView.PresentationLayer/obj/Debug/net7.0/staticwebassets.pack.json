@@ -33,6 +33,10 @@
       "PackagePath": "staticwebassets\\images\\backgroundImage.png"
     },
     {
+      "Id": "C:\\Users\\pct78\\assesmentTask_1405\\UserAdminWebView.PresentationLayer\\wwwroot\\images\\icons8-alert-48.png",
+      "PackagePath": "staticwebassets\\images\\icons8-alert-48.png"
+    },
+    {
       "Id": "C:\\Users\\pct78\\assesmentTask_1405\\UserAdminWebView.PresentationLayer\\wwwroot\\images\\icons8-management-48.png",
       "PackagePath": "staticwebassets\\images\\icons8-management-48.png"
     },
@@ -41,12 +45,20 @@
       "PackagePath": "staticwebassets\\images\\logo.png"
     },
     {
+      "Id": "C:\\Users\\pct78\\assesmentTask_1405\\UserAdminWebView.PresentationLayer\\wwwroot\\images\\pencil-square.svg",
+      "PackagePath": "staticwebassets\\images\\pencil-square.svg"
+    },
+    {
       "Id": "C:\\Users\\pct78\\assesmentTask_1405\\UserAdminWebView.PresentationLayer\\wwwroot\\images\\profile.png",
       "PackagePath": "staticwebassets\\images\\profile.png"
     },
     {
       "Id": "C:\\Users\\pct78\\assesmentTask_1405\\UserAdminWebView.PresentationLayer\\wwwroot\\images\\team.png",
       "PackagePath": "staticwebassets\\images\\team.png"
+    },
+    {
+      "Id": "C:\\Users\\pct78\\assesmentTask_1405\\UserAdminWebView.PresentationLayer\\wwwroot\\images\\trash-fill.svg",
+      "PackagePath": "staticwebassets\\images\\trash-fill.svg"
     },
     {
       "Id": "C:\\Users\\pct78\\assesmentTask_1405\\UserAdminWebView.PresentationLayer\\wwwroot\\images\\user.png",

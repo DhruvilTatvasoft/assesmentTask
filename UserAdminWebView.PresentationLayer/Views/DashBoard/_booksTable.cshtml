@@ -1,0 +1,62 @@
+@model BookDetailsViewModal
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            @if (User.IsInRole("User"))
+            {
+                <th scope="col">
+                    @* <input class="form-check-input col1" type="checkbox" style="width:1em;height:1em;" value=""
+                        id="flexCheckDefault"> *@
+                </th>
+            }
+            <th scope="col">Book id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Publish Year</th>
+            <th scope="col">ISBN no.</th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th scope="col">status</th>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <th scope="col">Action</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model.bookList)
+                        {
+  <tr>
+            @if (User.IsInRole("User"))
+            {
+                <th scope="col">
+                    <input class="form-check-input col1" type="checkbox" style="width:1em;height:1em;" value="@book.id" name="bookids">
+                </th>
+            }
+            <div class="d-none"></div>
+            <td>#@book.id</td>
+            <td>@book.Title</td>
+            <td>@book.Author</td>
+            <td>@book.year</td>
+            <td>@book.ISBNNo</td>
+            @if (User.IsInRole("Admin"))
+            {
+            <td>@book.Status</td>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <td>
+                    <div class="d-flex justify-content-start w-100 pb-2 h-100">
+                        <img src="~/images/pencil-square.svg" style="cursor: pointer;" onclick="editBookDetailsGet(@book.id)" class="me-4" alt="">
+                        <img src="~/images/trash-fill.svg" style="cursor: pointer;" onclick="openDeleteModal(@book.id)" alt="">
+                    </div>
+                </td>
+            }
+
+        </tr>
+        }
+    </tbody>
+</table>
+<script>
+</script>

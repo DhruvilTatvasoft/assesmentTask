@@ -1,0 +1,77 @@
+@model BookDetailsViewModal
+<partial name="_ValidationScriptsPartial" />
+<form id="returnBookModelForm">
+    <div class="modal fade" id="returnBookModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Issued Books</h5>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Book id</th>
+                            <th scope="col">Book name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var book in Model.bookList)
+                        {
+                            <tr>
+                                <th scope="row">
+                    <input class="form-check-input col1" type="checkbox" style="width:1em;height:1em;" value="@book.id" name="issuedbookids">
+                                </th>
+                                <td>@book.id</td>
+                                <td>@book.Title</td>
+                            </tr>
+                        }
+                    </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Return Books</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<script>
+    $("#returnBookModelForm").on('submit',function(e){
+        e.preventDefault();
+        var selectedBooksforReturn = [];
+         $("input:checkbox[name=issuedbookids]:checked").each(function(){
+            selectedBooksforReturn.push($(this).val());
+        });
+
+        if(selectedBooksforReturn.length < 1){
+            toastr.error("select atleast one book");
+        }
+        var bookModel = {
+            bookids : selectedBooksforReturn,
+            email :  @Html.Raw(Json.Serialize(Model.email))
+        } 
+        $.ajax({
+            url:"@Url.Action("ReturnBooks","Book")",
+            type: "POST",
+            data: JSON.stringify(bookModel),
+            contentType: "application/json",
+            dataType:"json",
+            success:function(data){
+                if(data.success){
+                    toastr.success(data.success);
+                    $("#returnBookModel").modal('hide');
+                    getAllBooks();
+                }
+                else{
+                    toastr.success(data.error);
+                }
+            }
+        });
+    })
+</script>

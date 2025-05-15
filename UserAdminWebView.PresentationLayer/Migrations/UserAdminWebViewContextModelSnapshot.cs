@@ -16,10 +16,45 @@ namespace UserAdminWebView.PresentationLayer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "7.0.18")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("BookDetails", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ISBNNo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("isDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("year")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("BookDetails");
+                });
 
             modelBuilder.Entity("LoginDetails", b =>
                 {
@@ -121,7 +156,83 @@ namespace UserAdminWebView.PresentationLayer.Migrations
                     b.ToTable("Roles");
                 });
 
+            modelBuilder.Entity("UserBook", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<int>("bookid")
+                        .HasColumnType("integer");
+
+                    b.Property<bool?>("isDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("issuedTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("userid")
+                        .HasColumnType("integer");
+
+                    b.HasKey("id");
+
+                    b.ToTable("UserBooks");
+                });
+
+            modelBuilder.Entity("UserDetails", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Roleid")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("collegeName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("phonenumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("Roleid");
+
+                    b.ToTable("UserDetails");
+                });
+
             modelBuilder.Entity("ProfileDetails", b =>
+                {
+                    b.HasOne("Roles", "role")
+                        .WithMany()
+                        .HasForeignKey("Roleid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("role");
+                });
+
+            modelBuilder.Entity("UserDetails", b =>
                 {
                     b.HasOne("Roles", "role")
                         .WithMany()

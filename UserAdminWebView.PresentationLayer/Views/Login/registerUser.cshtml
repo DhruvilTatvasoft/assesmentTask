@@ -1,0 +1,66 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model UserDetailsViewModel
+<partial name="_ValidationScriptsPartial" />
+<label for="" class="ps-label">Register</label>
+<form method="post" asp-action="CreateNewUser" asp-controller="Login" class="RegisterForm form-group w-75 mt-4">
+    <label for="" class="login-text mb-3" style="font-size:24px;font-weight: 500;">Welcome,</label>
+    <div>
+        <div class="d-flex flex-column">
+            <div class="input-group mb-2 d-flex flex-column">
+                <input type="text" class="form-control w-100" placeholder="Name" asp-for="name" required>
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <div class="input-group mb-2 d-flex flex-column">
+                <input type="email" class="form-control w-100" placeholder="Email" asp-for="email" required>
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <div class="input-group mb-2 d-flex flex-column">
+                <input type="password" class="form-control w-100"  placeholder="Password" asp-for="password"
+                    required>
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <div class="input-group mb-2 d-flex flex-column">
+                <input type="text" class="form-control w-100"  placeholder="Phone" asp-for="phonenumber"
+                    required>
+                <span asp-validation-for="phonenumber" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <div class="input-group mb-2 d-flex flex-column">
+                <input type="text" class="form-control w-100" placeholder="School/College" asp-for="collegeName" required>
+                
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary w-100 mt-2">Register</button>
+</form>
+
+<script>
+    @* $(".RegisterForm").on("submit",function(e){
+        console.log("submitted")
+        e.preventDefault();
+        if(!$(this).valid){
+            console.log("not valid")
+            return;
+        }
+        var data = new FormData(this);
+        $.ajax({
+            url:"@Url.Action("CreateNewUser","Login")",
+            type:"POST",
+            data:data,
+            processData:false,
+            contentType:false,
+            success:function(response){
+                window.location.href = response.url;
+            }
+        });
+    }) *@
+</script>

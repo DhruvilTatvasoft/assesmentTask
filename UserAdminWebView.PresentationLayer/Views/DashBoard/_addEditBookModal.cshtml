@@ -1,0 +1,66 @@
+@{
+    int year = 2000;
+}
+@model BookDetailsViewModal
+<partial name="_ValidationScriptsPartial" />
+<form id="addEditBookForm">
+    <div class="modal fade" id="addEditBookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header pb-0" style="border:none;">
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Book @Model.bookid</h5>
+                    <button type="button" class="close" style="margin-left: auto; border: none; background: none;"
+                        aria-label="Close" data-bs-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" id="tokenid" asp-for="@Model.bookid">
+                        <div class="form-group col-12 mb-3 ">
+
+                            <input type="text" class="form-control p-2"  asp-for = "bookname"
+                                aria-describedby="emailHelp" placeholder="Book Title*">
+                            <span asp-validation-for="@Model.bookname"
+                                class="text-danger pt-2 emailaddress"></span>
+                          
+                        </div>
+                        <div class="form-group col-12 mb-3">
+                            <input type="text" class="form-control p-2" id="" aria-describedby="emailHelp" asp-for = "Authorname"
+                                placeholder="Book Author*">
+                            <span asp-validation-for="@Model.Authorname" class="text-danger pt-2"></span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                        <div class="form-group col-6 mb-3 me-3">
+                            <select class="form-select" aria-label="Default select example" asp-for="publishedYear">
+                            <option selected disabled>Published year</option>
+                            @for(int i=0;i<30;i++){
+                            <option value="@year">@year</option>
+                            <div class="d-none">@(year++)</div>
+                            }
+                            </select>
+                        </div>
+                        <div class="form-group col-6 mb-3 pe-3">
+                            <select class="form-select" aria-label="Default select example" placeholder="Status">
+                            <option  value="false" selected="@(Model.bookid != null && Model.bookstatus == true ? "true" : "false" )" disabled="@(User.IsInRole("Admin") ? "false" : "true")">Issued</option>
+                            <option  value="true" selected="@(Model.bookid != null && Model.bookstatus == true ? "true" : "false" )" >Available</option>
+                            </select>
+                        </div>
+                        </div>
+                        <div class="form-group col-12 mb-3 ">
+                            <input type="text" class="form-control p-2" id="" aria-describedby="emailHelp"
+                                placeholder="ISBN No*" asp-for="ISBN">
+                            <span asp-validation-for="@Model.ISBN" class="text-danger pt-2"></span>
+                        </div>
+                        
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-primary btncolour me-2" type="submit" id="AddNewToken">Save</button>
+                        <button class="btn btn-outline-primary btnoutlinecolour" id="closeBtn"
+                            data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>

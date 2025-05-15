@@ -16,6 +16,7 @@ builder.Services.AddScoped<ILogin,LoginImple>();
 builder.Services.AddScoped<IJwtTokenGenService, JwtTokenImple>();
 builder.Services.AddScoped<ICookieService,CookieService >();
 builder.Services.AddScoped<IUserDetailsService,UserDetailsImple>();
+builder.Services.AddScoped<IBookService,BookImple>();
 builder.Services.AddAuthorization(options =>
 {
     options.DefaultPolicy = new AuthorizationPolicyBuilder()

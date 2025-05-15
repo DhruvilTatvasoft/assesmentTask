@@ -16,8 +16,28 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\pct78\assesmentTask_1405\UserAdminWebView.PresentationLayer
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/pct78/assesmentTask_1405/UserAdminWebView.PresentationLayer/Views/Book/_deleteModel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xfZGVsZXRlTW9kZWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pct78/assesmentTask_1405/UserAdminWebView.PresentationLayer/Views/Book/_issuedBooksModel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xfaXNzdWVkQm9va3NNb2RlbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pct78/assesmentTask_1405/UserAdminWebView.PresentationLayer/Views/DashBoard/bookManagementdashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXGJvb2tNYW5hZ2VtZW50ZGFzaGJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/pct78/assesmentTask_1405/UserAdminWebView.PresentationLayer/Views/DashBoard/dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXGRhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pct78/assesmentTask_1405/UserAdminWebView.PresentationLayer/Views/DashBoard/_addEditBookModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXF9hZGRFZGl0Qm9va01vZGFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pct78/assesmentTask_1405/UserAdminWebView.PresentationLayer/Views/DashBoard/_booksTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXF9ib29rc1RhYmxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/pct78/assesmentTask_1405/UserAdminWebView.PresentationLayer/Views/DashBoard/_userDetails.cshtml]
@@ -26,6 +46,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/pct78/assesmentTask_1405/UserAdminWebView.PresentationLayer/Views/Login/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5caW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pct78/assesmentTask_1405/UserAdminWebView.PresentationLayer/Views/Login/registerUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5ccmVnaXN0ZXJVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/pct78/assesmentTask_1405/UserAdminWebView.PresentationLayer/Views/Login/_logout.cshtml]

@@ -6,6 +6,14 @@ public class UserDetailsImple : IUserDetailsService
     public UserDetailsImple(UserAdminWebViewContext context){
         _context = context;
     }
+
+    
+
+    public List<BookDetails> getAllBooks()
+    {
+        throw new NotImplementedException();
+    }
+
     public List<ProfileDetails> getAllUserDetails()
     {
         List<ProfileDetails> allUsers = _context.ProfileDetails.Where(user=>user.Roleid == 2).ToList();
